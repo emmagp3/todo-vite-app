@@ -1,6 +1,6 @@
 import { Todo } from "./models/todo.model";
 
-const Filters = {
+export const Filters = {
   All: 'all',
   Completed: 'completed',
   Pending: 'pending',
@@ -8,11 +8,6 @@ const Filters = {
 
 const state = {
   todos: [
-    new Todo('Piedra de oro'),
-    new Todo('Piedra de piedra'),
-    new Todo('Piedra de diamante'),
-    new Todo('Piedra de plata'),
-    new Todo('Piedra de marfil'),
   ],
   filter: Filters.All,
 };
@@ -75,7 +70,7 @@ const deleteCompleted = () => {
 };
 
 const setFilter = (newFilter = Filters.All) => {
-  if (!(newFilter in Filters)) {
+  if (Object.entries(Filters).includes(newFilter)) {
     throw new Error(`Filter ${newFilter} is not valid`);
   }
   state.filter = newFilter;
